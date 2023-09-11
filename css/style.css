@@ -1,0 +1,39 @@
+#nonLoadUp {
+    display: none;
+}
+
+.navBar {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    border-radius: 0px 15px 15px 0px;
+    border-top: 4px solid #337ab7;
+    border-right: 4px solid #337ab7;
+    border-bottom: 4px solid #337ab7;
+}
+
+#nav-item {
+    color: white;
+    display: block;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.navBar button:hover{
+    background-color: grey;
+    border: grey;
+}
+
+.main-content{
+    margin-left: 180px;
+}
+
+.BMIBerekenen input{
+ height: 35px;
+}
