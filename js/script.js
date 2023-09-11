@@ -5,18 +5,18 @@ function pageManager(pageId) {
     var secondPage = document.getElementsByClassName('CalVerbrand')[0];
     var thridPage = document.getElementsByClassName('BMIBerekenen')[0];
 
-    switch(pageId) {
-        case 0: 
+    switch (pageId) {
+        case 0:
             pageOff(secondPage);
             pageOn(firstPage);
             pageOff(thridPage);
             break;
-        case 1: 
+        case 1:
             pageOff(firstPage);
             pageOn(secondPage);
             pageOff(thridPage);
             break;
-        case 2: 
+        case 2:
             pageOff(firstPage);
             pageOff(secondPage);
             pageOn(thridPage)
@@ -41,6 +41,6 @@ function BMIBerekenen() {
     var gewicht = document.getElementsByClassName("gewichtBMI")[0].value;
     var output = document.getElementById("BMIOutput");
     console.log(gewicht / (lengte * lengte));
-    output.innerHTML = gewicht / (lengte * lengte);
+    output.innerHTML = "Jouw bmi is: " + Math.round((gewicht / (lengte * lengte) * 10)) / 10;
 
 }

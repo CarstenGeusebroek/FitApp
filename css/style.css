@@ -1,5 +1,35 @@
+html {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0
+}
+
 #nonLoadUp {
     display: none;
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4
 }
 
 .navBar {
@@ -25,15 +55,15 @@
     margin-top: 20px;
 }
 
-.navBar button:hover{
+.navBar button:hover {
     background-color: grey;
     border: grey;
 }
 
-.main-content{
+.main-content {
     margin-left: 180px;
 }
 
-.BMIBerekenen input{
- height: 35px;
+.BMIBerekenen input {
+    height: 35px;
 }
