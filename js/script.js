@@ -41,7 +41,6 @@ function BMIBerekenen() {
     var gewicht = document.getElementsByClassName("gewichtBMI")[0].value;
     
     var bmi = Math.round((gewicht / (lengte * lengte) * 10)) / 10;
-    console.log(gewicht / (lengte * lengte));
     IsGezondBMI(bmi)
 }
 
@@ -50,12 +49,17 @@ function IsGezondBMI(bmi) {
     var gezondheid;
     if(bmi <= 20) {
         gezondheid = " Uw heeft ondergewicht. Het is belangrijk dat u gewichtstoename realiseert.";
+        output.innerHTML = "Jouw bmi is: " + bmi + "." + gezondheid;
     } else if(bmi <=  25) {
         gezondheid = " Uw gewicht is gezond. Probeer op dit gewicht te blijven.";
+        output.innerHTML = "Jouw bmi is: " + bmi + "." + gezondheid;
     } else if(bmi <= 30) {
         gezondheid = " U heeft overgewicht. Afvallen is verstandig.";
-    } else {
+        output.innerHTML = "Jouw bmi is: " + bmi + "." + gezondheid;
+    } else if(bmi > 30){
         gezondheid = " Uw gewicht is levensbedreigend. Neem contact op met uw huisarts.";
+        output.innerHTML = "Jouw bmi is: " + bmi + "." + gezondheid;
+    } else {
+        output.innerHTML = "U moet de juiste getallen in vullen.";
     }
-    output.innerHTML = "Jouw bmi is: " + bmi + "." + gezondheid;
 }
