@@ -66,7 +66,7 @@ function IsGezondBMI(bmi) {
 
 function onCalVerbrand() {
     var activiteit = document.getElementById("activiteitInput");
-    var tijd = document.getElementById("tijdInput") / 60;
+    var tijd = Number(document.getElementById("tijdInput")) / 60;
     console.log(tijd);
     switch(activiteit.value) {
         case "wandelen":
