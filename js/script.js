@@ -63,3 +63,27 @@ function IsGezondBMI(bmi) {
         output.innerHTML = "U moet de juiste getallen in vullen.";
     }
 }
+
+function onCalVerbrand() {
+    var activiteit = document.getElementById("activiteitInput");
+    var tijd = document.getElementById("tijdInput") / 60;
+    console.log(tijd);
+    switch(activiteit.value) {
+        case "wandelen":
+            berekenCal(300, tijd);
+            break;
+        case "rennen":
+            berekenCal(700, tijd);
+            break;
+        case "zwemmen":
+            berekenCal(450, tijd);
+            break;
+        case "roeien":
+            berekenCal(500, tijd);
+            break;
+    }
+}
+
+function berekenCal(perUur, aantalUur) {
+    console.log(perUur * aantalUur);
+}
