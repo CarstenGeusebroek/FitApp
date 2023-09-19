@@ -3,23 +3,45 @@ function pageManager(pageId) {
     //Pagina's
     var firstPage = document.getElementsByClassName('Homepage')[0];
     var secondPage = document.getElementsByClassName('CalVerbrand')[0];
-    var thridPage = document.getElementsByClassName('BMIBerekenen')[0];
+    var thridPage = document.getElementsByClassName('CalTeller')[0];
+    var fourthPage = document.getElementsByClassName('BMIBerekenen')[0];
+    var fifthPage = document.getElementsByClassName('OverOns')[0];
 
     switch (pageId) {
         case 0:
             pageOn(firstPage);
             pageOff(secondPage);
             pageOff(thridPage);
+            pageOff(fourthPage);
+            pageOff(fifthPage);
             break;
         case 1:
             pageOff(firstPage);
             pageOn(secondPage);
             pageOff(thridPage);
+            pageOff(fourthPage);
+            pageOff(fifthPage);
             break;
         case 2:
             pageOff(firstPage);
             pageOff(secondPage);
-            pageOn(thridPage)
+            pageOn(thridPage);
+            pageOff(fourthPage);
+            pageOff(fifthPage);
+            break;
+        case 3:
+            pageOff(firstPage);
+            pageOff(secondPage);
+            pageOff(thridPage);
+            pageOn(fourthPage);
+            pageOff(fifthPage);
+            break;
+        case 4:
+            pageOff(firstPage);
+            pageOff(secondPage);
+            pageOff(thridPage);
+            pageOff(fourthPage);
+            pageOn(fifthPage);
             break;
         default:
             console.error("page id bestaat niet");

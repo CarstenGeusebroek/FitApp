@@ -27,18 +27,25 @@ body {
     vertical-align: middle;
     cursor: pointer;
     background-image: none;
-    border: 1px solid white;
+    border: 5px solid white;
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
     border-radius: 4px;
     color: black;
+
 }
 
-.btn-primary {
+.btn-nav {
+    padding-left: 5px;
     color: black;
-    background-color: #337ab7;
-    border-color: #2e6da4
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0)
+}
+
+.navBar button:hover {
+    background-color: var(--second-color);
+    border-left-color: #6C72FF
 }
 
 .navBar {
@@ -63,10 +70,7 @@ body {
     margin-top: 20px;
 }
 
-.navBar button:hover {
-    background-color: grey;
-    border: grey;
-}
+
 
 .main-content {
     margin-left: 220px;
@@ -86,7 +90,7 @@ h3,
 h4,
 h5,
 p {
-    color: white;
+    color: rgb(214, 214, 214);
 }
 
 .BMIBerekenen input {
