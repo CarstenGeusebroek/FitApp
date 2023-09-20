@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitnessApp</title>
+    <script src="../js/script.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <!-- Hier staan alle verschillende pagina's, deze kunnen aan en uit geschakeld worden door js. -->
+    <div class="navBar">
+        <h1 id="nav-item">Fitness App</h1>
+        <button id="nav-item" class="btn btn-nav" onclick="pageManager(0)">Home page</button>
+        <button id="nav-item" class="btn btn-nav" onclick="pageManager(1)">Calorieën verbrand</button>
+        <button id="nav-item" class="btn btn-nav" onclick="pageManager(2)">Calorieën teller</button>
+        <button id="nav-item" class="btn btn-nav" onclick="pageManager(3)">BMI Berekenen</button>
+        <button id="nav-item" class="btn btn-nav" onclick="pageManager(4)">Over ons</button>
+    </div>
+    <div class="main-content">
+        <div class="Homepage">
+            <h1>Home</h1>
+            <p>Welkom bij Rasica Fit, dé fitness app van de toekomst! <br>
+                Op onze prachtige, revolutionaire fitness app kunt u van alles berekenen, van uw BMI tot zelfs uw
+                verbrande calorieën!<br>
+                Grafiek 1 <br>
+                Grafiek 2 <br>
+            </p>
+        </div>
+        <div id="nonLoadUp" class="CalVerbrand">
+            <h1>Calorieën verbrand</h1>
+            <select name="Activiteit" id="activiteitInput">
+                <option value="wandelen">Wandelen</option>
+                <option value="rennen">Rennen</option>
+                <option value="zwemmen">Zwemmen</option>
+                <option value="roeien">Roein</option>
+            </select>
+            <input type="text" id="tijdInput">
+            <button class="btn" onclick="onCalVerbrand()">Bereken</button>
+            <p id="calOutput"></p>
+        </div>
+        <div id="nonLoadUp" class="CalTeller">
+            <h1>Calorieën tellen</h1>
+        </div>
+        <div id="nonLoadUp" class="BMIBerekenen">
+            <h1>BMI berekenen</h1>
+            <h2>Gewicht in kg:</h2>
+            <input class="gewichtBMI" type="text">
+            <h2>Lengte in cm:</h2>
+            <input class="lengteBMI" type="text">
+            <button class="btn btn-primary" onclick="BMIBerekenen()">Bereken</button>
+            <h5 id="BMIOutput"></h5>
+        </div>
+        <div id="nonLoadUp" class="OverOns">
+            <h1>Over ons</h1>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- git merge --no-ff -->
