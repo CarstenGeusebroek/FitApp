@@ -89,7 +89,8 @@ h2,
 h3,
 h4,
 h5,
-p {
+p,
+label {
     color: rgb(214, 214, 214);
 }
 
@@ -99,4 +100,16 @@ p {
 
 .Homepage {
     background-color: var(--bg-color);
+}
+
+.radioInput {
+    margin-left: 20px;
+}
+
+.calTellerItem {
+    margin-bottom: 40px;
+}
+
+.calTellerItem input {
+    margin-top: 10px;
 }

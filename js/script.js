@@ -1,3 +1,18 @@
+const CALTELLER = new Map();
+
+function onload() {
+    CALTELLER.set("appel", 60);
+    CALTELLER.set("paprika", 28);
+    CALTELLER.set("zilvervliesrijst", 111);
+    CALTELLER.set("sperziebonen", 24);
+    CALTELLER.set("kabeljauwfilet", 118);
+    CALTELLER.set("biefstuk", 115);
+    CALTELLER.set("olie", 108);
+    CALTELLER.set("halvarine", 90);
+    CALTELLER.set("thee", 0);
+    CALTELLER.set("coca", 0.6);
+}
+
 function pageManager(pageId) {
 
     //Pagina's
@@ -134,9 +149,33 @@ function berekenCal(perUur, aantalUur) {
     }
 }
 
-
-
 function formatDate(date) {
     var correctDate = date.getDate().toString() + (date.getMonth() + 1).toString() + date.getFullYear().toString();
     return correctDate;
+}
+
+function onBerekenCal() {
+    var checkBoxes = document.getElementsByClassName("calTellerCheckBox");
+
+    var totalCal = 0;
+
+    //Loop door alle checkboxes heen
+    for (let i = 0; i < checkBoxes.length; i++) {
+
+        //check of de checkbox is gechecked
+        if (checkBoxes[i].checked) {
+
+            var radioInputs = document.getElementsByClassName("radioInput" + checkBoxes[i].id);
+
+            if (radioInputs[0].checked) {
+                totalCal += CALTELLER.get(radioInputs[0].id);
+            } else if (radioInputs[1].checked) {
+                totalCal += CALTELLER.get(radioInputs[1].id);
+            } else {
+                console.error("Altijd 1 checken");
+            }
+        }
+    }
+
+    console.log(totalCal);
 }
