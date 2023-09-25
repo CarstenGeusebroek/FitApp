@@ -10,24 +10,26 @@
 
     <!-- Bootstrap import voor wat standaard opmaak. -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body onload="onload()">
     <!-- Hier staan alle verschillende pagina's, deze kunnen aan en uit geschakeld worden door js. -->
     <div class="navBar">
         <h1 id="nav-item">Fitness App</h1>
-        <button id="nav-item" class="btn btn-primary" onclick="pageManager(0)">Home page</button>
-        <button id="nav-item" class="btn btn-primary" onclick="pageManager(1)">Calorieën verbrand</button>
-        <button id="nav-item" class="btn btn-primary" onclick="pageManager(2)">BMI Berekenen</button>
+        <button id="nav-item" class="btn btn-nav" onclick="pageManager(0)">Home page</button>
+        <button id="nav-item" class="btn btn-nav" onclick="pageManager(1)">Calorieën verbrand</button>
+        <button id="nav-item" class="btn btn-nav" onclick="pageManager(2)">Calorieën teller</button>
+        <button id="nav-item" class="btn btn-nav" onclick="pageManager(3)">BMI Berekenen</button>
+        <button id="nav-item" class="btn btn-nav" onclick="pageManager(4)">Over ons</button>
     </div>
     <div class="main-content">
         <div class="Homepage">
             <h1>Home</h1>
             <p>Welkom bij Rasica Fit, dé fitness app van de toekomst! <br>
-            Op onze prachtige, revolutionaire fitness app kunt u van alles berekenen, van uw BMI tot zelfs uw verbrande calorieën!<br>
-            Grafiek 1 <br>
-            Grafiek 2 <br>
+                Op onze prachtige, revolutionaire fitness app kunt u van alles berekenen, van uw BMI tot zelfs uw
+                verbrande calorieën!<br>
+                Grafiek 1 <br>
+                Grafiek 2 <br>
             </p>
         </div>
         <div id="nonLoadUp" class="CalVerbrand">
@@ -40,6 +42,73 @@
             </select>
             <input type="text" id="tijdInput">
             <button class="btn" onclick="onCalVerbrand()">Bereken</button>
+            <p id="calOutput"></p>
+        </div>
+        <div id="nonLoadUp" class="CalTeller">
+            <h1>Calorieën tellen</h1>
+
+
+            <div class="calTellerItem">
+                <input type="checkbox" id="groenteFruit" class="calTellerCheckBox">
+                <label for="groenteFruit">Groente en Fruit</label>
+                <form id="groenteFruitForm">
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputgroenteFruit" id="appel"
+                        value="appel">
+                    <label for="appel">Appel (60 kcal per stuk)</label><br>
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputgroenteFruit" id="paprika"
+                        value="paprika">
+                    <label for="paprika">Paprika (28 kcal per stuk)</label><br>
+                </form>
+            </div>
+
+            <div class="calTellerItem">
+                <input type="checkbox" id="broodPastaPeulVruchten" class="calTellerCheckBox">
+                <label for="broodPastaPeulVruchten">Brood, pasta en peulvruchten</label>
+                <form id="broodPastaPeulVruchtenForm">
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputbroodPastaPeulVruchten"
+                        id="zilvervliesrijst" value="zilvervliesrijst">
+                    <label for="zilvervliesrijst">Zilvervliesrijst (111 kcal per 100 gram)</label><br>
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputbroodPastaPeulVruchten"
+                        id="sperziebonen" value="sperziebonen">
+                    <label for="sperziebonen">Sperziebonen (24 kcal per 100 gram)</label><br>
+                </form>
+            </div>
+            <div class="calTellerItem">
+                <input type="checkbox" id="zuivelvlees" class="calTellerCheckBox">
+                <label for="zuivelvlees">Zuivel, vlees, vis, ei en vleesvervangers</label>
+                <form id="zuivelvleesForm">
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputzuivelvlees"
+                        id="kabeljauwfilet" value="kabeljauwfilet">
+                    <label for="kabeljauwfilet">Kabeljauwfilet (118 kcal per 100 gram)</label><br>
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputzuivelvlees" id="biefstuk"
+                        value="biefstuk">
+                    <label for="biefstuk">Biefstuk (115 kcal per 100 gram)</label><br>
+                </form>
+            </div>
+            <div class="calTellerItem">
+                <input type="checkbox" id="vettenOlie" class="calTellerCheckBox">
+                <label for="vettenOlie">Vetten en olie</label>
+                <form id="vettenOlieForm">
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputvettenOlie" id="olie"
+                        value="olie">
+                    <label for="olie">Olie (108 kcal per eetlepel)</label><br>
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputvettenOlie" id="halvarine"
+                        value="halvarine">
+                    <label for="halvarine">Halvarine (90 kcal per 25 gram)</label><br>
+                </form>
+            </div>
+            <div class="calTellerItem">
+                <input type="checkbox" id="vocht" class="calTellerCheckBox">
+                <label for="vocht">Vocht</label>
+                <form id="vochtForm">
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputvocht" id="thee" value="thee">
+                    <label for="thee">Thee (0 kcal per 500 ml)</label><br>
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputvocht" id="coca" value="coca">
+                    <label for="coca">Coca cola light (0,6 kcal per blikje)</label><br>
+                </form>
+            </div>
+
+            <button class="btn" onclick="onBerekenCal()">Berekenen</button>
         </div>
         <div id="nonLoadUp" class="BMIBerekenen">
             <h1>BMI berekenen</h1>
@@ -49,6 +118,9 @@
             <input class="lengteBMI" type="text">
             <button class="btn btn-primary" onclick="BMIBerekenen()">Bereken</button>
             <h5 id="BMIOutput"></h5>
+        </div>
+        <div id="nonLoadUp" class="OverOns">
+            <h1>Over ons</h1>
         </div>
     </div>
     <canvas id="myChart" width="400" height="400"></canvas>
