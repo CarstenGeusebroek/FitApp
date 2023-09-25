@@ -131,3 +131,8 @@ label {
 .calTellerItem input {
     margin-top: 10px;
 }
+
+#myCanvas {
+    width: 400px;
+    height: 300px;
+}

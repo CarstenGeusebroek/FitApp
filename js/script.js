@@ -179,3 +179,42 @@ function onBerekenCal() {
 
     console.log(totalCal);
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Data for the graph (x and y values)
+    const data = [
+        { x: 0, y: 50 },
+        { x: 50, y: 100 },
+        { x: 100, y: 75 },
+        { x: 150, y: 120 },
+        { x: 200, y: 90 },
+        { x: 250, y: 90 },
+    ];
+
+    // Function to draw the graph
+    function drawGraph() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Define graph properties (line color, width, etc.)
+        ctx.strokeStyle = "#0077FF";
+        ctx.lineWidth = 2;
+
+        // Move to the first data point
+        ctx.beginPath();
+        ctx.moveTo(data[0].x, canvas.height - data[0].y);
+
+        // Loop through the data and draw the graph
+        for (let i = 1; i < data.length; i++) {
+            ctx.lineTo(data[i].x, canvas.height - data[i].y);
+        }
+
+        // Stroke the path to draw the line
+        ctx.stroke();
+    }
+
+    // Call the drawGraph function to draw the initial graph
+    drawGraph();
+});
