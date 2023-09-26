@@ -1,3 +1,5 @@
+//Start constante waardes
+
 const CALTELLER = new Map();
 
 function onload() {
@@ -13,11 +15,16 @@ function onload() {
     CALTELLER.set("coca", 0.6);
 }
 
+//Eind constante waardes
 
+//Deze event gaat af op het moment dat de pagina wordt geladen
 document.addEventListener("DOMContentLoaded", function () {
     makeGraphs();
 });
 
+//Start navigatie sectie
+
+//Zorgt voor de navigatie tussen verschillende pagina's
 function pageManager(pageId) {
 
     //Pagina's
@@ -27,6 +34,7 @@ function pageManager(pageId) {
     var fourthPage = document.getElementsByClassName('BMIBerekenen')[0];
     var fifthPage = document.getElementsByClassName('OverOns')[0];
 
+    //Laat de juiste pagina aan gaan
     switch (pageId) {
         case 0:
             pageOn(firstPage);
@@ -79,6 +87,11 @@ function pageOn(x) {
     x.style.display = "block";
 }
 
+//Eind navigatie sectie
+
+//Begin bmi berekenen
+
+//functie voor het berekenen van bmi
 function BMIBerekenen() {
     var lengte = document.getElementsByClassName("lengteBMI")[0].value / 100;
     var gewicht = document.getElementsByClassName("gewichtBMI")[0].value;
@@ -87,6 +100,7 @@ function BMIBerekenen() {
     IsGezondBMI(bmi)
 }
 
+//functie voor het laten zien van bmi
 function IsGezondBMI(bmi) {
     var output = document.getElementById("BMIOutput");
     var gezondheid;
@@ -107,6 +121,11 @@ function IsGezondBMI(bmi) {
     }
 }
 
+//Eind bmi berekenen
+
+//Begin calorieën verbrand
+
+//Wordt gecalled op moment dat knop wordt gedrukt en krijgt alle html input
 function onCalVerbrand() {
     var activiteit = document.getElementById("activiteitInput");
     var tijd = Number(document.getElementById("tijdInput").value) / 60;
@@ -126,11 +145,12 @@ function onCalVerbrand() {
     }
 }
 
+//Berekent de daadwerkelijke calorieën die zijn verbrand
 function berekenCal(perUur, aantalUur) {
     var output = document.getElementById("calOutput");
     var calVerbrand = perUur * aantalUur;
 
-
+    //Voor het opslaan van calorieën per dag hebben we de datum nodig
     const date = new Date();
     startDate = new Date(date.getFullYear(), 0, 1);
     var days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
@@ -138,6 +158,8 @@ function berekenCal(perUur, aantalUur) {
     var weekNumber = Math.ceil(days / 7);
 
     var today = formatDate(date);
+
+    //Calorieën worden opgeslagen in local storage
     if (localStorage.getItem("lastSavedverbrandDay") !== today) {
         //Vandaag nog niet gesaved
         localStorage.setItem("lastSavedverbrandDay", today);
@@ -150,6 +172,7 @@ function berekenCal(perUur, aantalUur) {
     var calVerbrandVandaag = localStorage.getItem("calverbrandToday");
     var highscore = Number(localStorage.getItem("dagHighScore"));
 
+    //Output van je verbrande calorieën
     if (highscore < calVerbrandVandaag) {
         output.innerHTML = `Nieuwe highscore van de dag!!! Je hebt nu ${calVerbrand} calorieën verbrand. Je zit vandaag al op ${calVerbrandVandaag} calorieën, goed bezig!`;
         localStorage.setItem("dagHighScore", calVerbrandVandaag);
@@ -159,15 +182,18 @@ function berekenCal(perUur, aantalUur) {
     saveVerbrandWeek(weekNumber, date.getDay());
 }
 
+
+//Save de verbrande calorieën in een array van deze week, dit is nodig voor de grafieken op de home pagina
 function saveVerbrandWeek(currentWeek, currentWeekDay) {
     var week;
     if (localStorage.getItem("currentverbrandWeek") == currentWeek) {
-        console.log("Deze week is gesaved");
+        //Deze week is gesaved
+
         week = JSON.parse(localStorage.getItem("weekverbrandCal"));
         week[currentWeekDay - 1] = localStorage.getItem("calverbrandToday");
         localStorage.setItem("weekverbrandCal", JSON.stringify(week));
     } else {
-        console.log("Deze week is niet gesaved")
+        //Deze week is nog niet gesaved
         week = [0, 0, 0, 0, 0, 0, 0];
         week[currentWeekDay - 1] = localStorage.getItem("calverbrandToday");
         localStorage.setItem("weekverbrandCal", JSON.stringify(week));
@@ -175,11 +201,17 @@ function saveVerbrandWeek(currentWeek, currentWeekDay) {
     }
 }
 
+//Eind calorieën verbrand
+
+//Functie voor het juist formateren van de datum in een string. Is bij zowel de verbrande als de getelde calorieën nodig.
 function formatDate(date) {
     var correctDate = date.getDate().toString() + (date.getMonth() + 1).toString() + date.getFullYear().toString();
     return correctDate;
 }
 
+//Begin calorieën tellen
+
+//Functie wordt gecalled op moment dat persoon zijn maaltijd wil tellen
 function onBerekenCal() {
     var checkBoxes = document.getElementsByClassName("calTellerCheckBox");
 
@@ -204,6 +236,7 @@ function onBerekenCal() {
         }
     }
 
+    //Voor het opslaan van calorieën per dag hebben we wederom de datum nodig
     const date = new Date();
     startDate = new Date(date.getFullYear(), 0, 1);
     var days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
@@ -222,18 +255,22 @@ function onBerekenCal() {
 
     saveTellerWeek(weekNumber, date.getDay());
 
+    //Output van de getelde calorieën
     document.getElementById("output-teller-cal").innerHTML = `Deze maaltijd staat gelijk aan ${totalCal} calorieën.`
 }
 
+//Save de getelde calorieën in een array van deze week, dit is nodig voor de grafieken op de home pagina
 function saveTellerWeek(currentWeek, currentWeekDay) {
     var week;
     if (localStorage.getItem("currenttellerWeek") == currentWeek) {
-        console.log("Deze week is gesaved");
+        //Deze week is gesaved
+
         week = JSON.parse(localStorage.getItem("weektellerCal"));
         week[currentWeekDay - 1] = localStorage.getItem("caltellerToday");
         localStorage.setItem("weektellerCal", JSON.stringify(week));
     } else {
-        console.log("Deze week is niet gesaved")
+        //Deze week is nog niet gesaved
+
         week = [0, 0, 0, 0, 0, 0, 0];
         week[currentWeekDay - 1] = localStorage.getItem("caltellerToday");
         localStorage.setItem("weektellerCal", JSON.stringify(week));
@@ -241,36 +278,46 @@ function saveTellerWeek(currentWeek, currentWeekDay) {
     }
 }
 
+//Eind calorieën tellen
+
+//Begin grafieken maken
 
 function makeGraphs() {
+    //Zorg ervoor dat we de juiste elementen krijgen en stop die in een array
     const graphs = document.getElementsByClassName("grafiek");
     var ctxs = [graphs[0].getContext("2d"), graphs[1].getContext("2d")];
 
-    //Verbrander
+    //Krijg alle verbrande calorieën van de afgelopen week uit localstorage
 
     var weekverbrandCal = JSON.parse(localStorage.getItem("weekverbrandCal"));
 
+    //Edge case
     if (weekverbrandCal === null) {
         weekverbrandCal = [0, 0, 0, 0, 0, 0, 0];
     }
 
+    //Formateer de data juist
     for (let i = 0; i < weekverbrandCal.length; i++) {
         weekverbrandCal[i] = Number(weekverbrandCal[i] / 7.5);
     }
 
 
-    //Teller
+    //Krijg alle getelde calorieën van de afgelopen week uit localstorage
+
     var weektellerCal = JSON.parse(localStorage.getItem("weektellerCal"));
 
+    //Edge case
     if (weektellerCal === null) {
         weektellerCal = [0, 0, 0, 0, 0, 0, 0];
     }
 
+    //Formateer de data juist
     for (let i = 0; i < weektellerCal.length; i++) {
         weektellerCal[i] = Number(weektellerCal[i] / 7.5);
     }
 
-    // Data for the graph (x and y values)
+    //Alle data voor beide grafieken
+
     const dataverbrand = [
         { x: 20, y: weekverbrandCal[0] },
         { x: 70, y: weekverbrandCal[1] },
@@ -291,32 +338,36 @@ function makeGraphs() {
         { x: 320, y: weektellerCal[6] },
     ];
 
+    //Bundel beide data van de grafieken
     const data = [dataverbrand, datateller];
 
 
-    // Function to draw the graph
+    //Funtie om de grafiek te maken
     function drawGraph(graphNumber) {
+
+        //Zorg ervoor dat de grafiek de juiste afmetingen heeft
         ctxs[graphNumber].clearRect(0, 0, graphs[graphNumber].width, graphs[graphNumber].height);
 
-        // Define graph properties (line color, width, etc.)
+        //Wat presets van de grafiek
         ctxs[graphNumber].strokeStyle = "#0077FF";
         ctxs[graphNumber].lineWidth = 2;
 
-        // Move to the first data point
+        //Zet het eerste data punt
         ctxs[graphNumber].beginPath();
         ctxs[graphNumber].moveTo(data[graphNumber][0].x, graphs[graphNumber].height - data[graphNumber][0].y);
 
-        // Loop through the data and draw the graph
+        //Daarna lopen door alle andere punten
         for (let i = 1; i < data[graphNumber].length; i++) {
             ctxs[graphNumber].lineTo(data[graphNumber][i].x, graphs[graphNumber].height - data[graphNumber][i].y);
         }
 
-        // Stroke the path to draw the line
         ctxs[graphNumber].stroke();
     }
 
-    // Call the drawGraph function to draw the initial graph
+    // Voor beide grafieken de draw functie callen
     for (let i = 0; i < graphs.length; i++) {
         drawGraph(i);
     }
 }
+
+//Einde grafieken maken
