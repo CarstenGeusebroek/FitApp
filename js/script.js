@@ -104,7 +104,6 @@ function IsGezondBMI(bmi) {
 function onCalVerbrand() {
     var activiteit = document.getElementById("activiteitInput");
     var tijd = Number(document.getElementById("tijdInput").value) / 60;
-    console.log(tijd);
     switch (activiteit.value) {
         case "wandelen":
             berekenCal(300, tijd);
@@ -127,6 +126,11 @@ function berekenCal(perUur, aantalUur) {
 
 
     const date = new Date();
+    startDate = new Date(date.getFullYear(), 0, 1);
+    var days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
+    
+    var weekNumber = Math.ceil(days / 7);
+
     var today = formatDate(date);
     if (localStorage.getItem("lastSavedDay") !== today) {
         //Vandaag nog niet gesaved
@@ -139,13 +143,29 @@ function berekenCal(perUur, aantalUur) {
 
     var calVerbrandVandaag = localStorage.getItem("calToday");
     var highscore = Number(localStorage.getItem("dagHighScore"));
-    console.log(highscore);
 
     if (highscore < calVerbrandVandaag) {
         output.innerHTML = `Nieuwe highscore van de dag!!! Je hebt nu ${calVerbrand} calorieën verbrand. Je zit vandaag al op ${calVerbrandVandaag} calorieën, goed bezig!`;
         localStorage.setItem("dagHighScore", calVerbrandVandaag);
     } else {
         output.innerHTML = `Je hebt nu ${calVerbrand} calorieën verbrand. Je zit vandaag al op ${calVerbrandVandaag} calorieën, goed bezig! Nog ${highscore - calVerbrand} en dan heb je een nieuw highscore!`;
+    }
+    saveWeek(weekNumber, date.getDay());
+}
+
+function saveWeek(currentWeek, currentWeekDay) {
+    var week;
+    if(localStorage.getItem("currentWeek") == currentWeek) {
+        console.log("Deze week is gesaved");
+        week = JSON.parse(localStorage.getItem("weekCal"));
+        week[currentWeekDay - 1] = localStorage.getItem("calToday");
+        localStorage.setItem("weekCal", JSON.stringify(week));
+    } else {
+        console.log("Deze week is niet gesaved")
+        week = [0, 0, 0, 0, 0, 0, 0];
+        week[currentWeekDay - 1] = localStorage.getItem("calToday");
+        localStorage.setItem("weekCal", JSON.stringify(week));
+        localStorage.setItem("currentWeek", currentWeek);
     }
 }
 
@@ -176,23 +196,45 @@ function onBerekenCal() {
             }
         }
     }
-
-    console.log(totalCal);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
 
+    var weekCal = JSON.parse(localStorage.getItem("weekCal"));
+
+    if(weekCal === null) {
+        weekCal = [0, 0, 0, 0, 0, 0, 0];
+    }
+    
+    for(let i = 0; i < weekCal.length; i++) {
+        console.log(Number(weekCal[i]));
+        weekCal[i] = Number(weekCal[i] / 10);
+    }
+
     // Data for the graph (x and y values)
     const data = [
-        { x: 0, y: 50 },
-        { x: 50, y: 100 },
-        { x: 100, y: 75 },
-        { x: 150, y: 120 },
-        { x: 200, y: 90 },
-        { x: 250, y: 90 },
+        { x: 50, y: weekCal[0] },
+        { x: 150, y: weekCal[1] },
+        { x: 200, y: weekCal[2] },
+        { x: 250, y: weekCal[3] },
+        { x: 300, y: weekCal[4] },
+        { x: 350, y: weekCal[5] },
+        { x: 400, y: weekCal[6] },
     ];
+
+        // const data = [
+        //     { x: 50, y: 150 },
+        //     { x: 150, y: 200 },
+        //     { x: 200, y: 250 },
+        //     { x: 250, y: 300 },
+        //     { x: 300, y: 350 },
+        //     { x: 350, y: 400 },
+        //     { x: 400, y: 450},
+        // ];
+
+    console.log(data.length);
 
     // Function to draw the graph
     function drawGraph() {
@@ -200,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Define graph properties (line color, width, etc.)
         ctx.strokeStyle = "#0077FF";
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 1;
 
         // Move to the first data point
         ctx.beginPath();
@@ -208,6 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Loop through the data and draw the graph
         for (let i = 1; i < data.length; i++) {
+            console.log(data[i].x);
             ctx.lineTo(data[i].x, canvas.height - data[i].y);
         }
 
