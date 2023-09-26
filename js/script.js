@@ -215,24 +215,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Data for the graph (x and y values)
     const data = [
-        { x: 50, y: weekCal[0] },
-        { x: 150, y: weekCal[1] },
-        { x: 200, y: weekCal[2] },
-        { x: 250, y: weekCal[3] },
-        { x: 300, y: weekCal[4] },
-        { x: 350, y: weekCal[5] },
-        { x: 400, y: weekCal[6] },
+        { x: 0, y: weekCal[0] },
+        { x: 50, y: weekCal[1] },
+        { x: 100, y: weekCal[2] },
+        { x: 150, y: weekCal[3] },
+        { x: 200, y: weekCal[4] },
+        { x: 250, y: weekCal[5] },
+        { x: 300, y: weekCal[6] },
     ];
-
-        // const data = [
-        //     { x: 50, y: 150 },
-        //     { x: 150, y: 200 },
-        //     { x: 200, y: 250 },
-        //     { x: 250, y: 300 },
-        //     { x: 300, y: 350 },
-        //     { x: 350, y: 400 },
-        //     { x: 400, y: 450},
-        // ];
 
     console.log(data.length);
 
