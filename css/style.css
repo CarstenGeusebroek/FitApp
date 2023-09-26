@@ -133,7 +133,7 @@ label {
 }
 
 #myCanvas {
-    width: 700px;
+    width: 400px;
     height: 300px;
     box-shadow: 7px 7px 33px 4px var(--second-color);
     border-radius: 15px 15px 15px 15px;
