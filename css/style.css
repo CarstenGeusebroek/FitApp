@@ -141,7 +141,7 @@ label {
 }
 
 .cal-grafiek {
-    margin-top: 20px;
+    margin-top: 10px;
     width: 300px;
     height: 150px;
     box-shadow: 7px 7px 33px 4px var(--second-color);
@@ -149,6 +149,19 @@ label {
     border: 4px solid var(--second-color);
 }
 
+.grafiek-label {
+    margin-top: 20px;
+}
+
 .nav-img {
     width: 85%;
+}
+
+.grafieken-container {
+    display: flex;
+}
+
+.cal-verbrand,
+.cal-teller {
+    margin-right: 20px;
 }

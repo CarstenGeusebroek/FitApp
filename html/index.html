@@ -26,16 +26,21 @@
             <p>Welkom bij Rasica Fit, dé fitness app van de toekomst! <br>
                 Op onze prachtige, revolutionaire fitness app kunt u van alles berekenen, van uw BMI tot zelfs uw
                 verbrande calorieën!<br>
-                Grafiek 1 <br>
-                Grafiek 2 <br>
             </p>
-            <div class="cal-grafiek">
-                <canvas class="grafiek" id="verbrand-grafiek"></canvas>
+            <div class="grafieken-container">
+                <div class="cal-verbrand">
+                    <p class="grafiek-label" for="verbrand-cal-grafiek">Verbrande calorieën afgelopen week</p>
+                    <div id="verbrand-cal-grafiek" class="cal-grafiek">
+                        <canvas class="grafiek" id="verbrand-grafiek"></canvas>
+                    </div>
+                </div>
+                <div class="cal-teller">
+                    <p class="grafiek-label" for="teller-cal-grafiek">Gegeten calorieën afgelopen week</p>
+                    <div id="teller-cal-grafiek" class="cal-grafiek">
+                        <canvas class="grafiek" id="teller-grafiek"></canvas>
+                    </div>
+                </div>
             </div>
-            <div class="cal-grafiek">
-                <canvas class="grafiek" id="teller-grafiek"></canvas>
-            </div>
-
         </div>
         <div id="nonLoadUp" class="CalVerbrand">
             <h1>Calorieën verbrand</h1>
@@ -114,6 +119,7 @@
             </div>
 
             <button class="btn" onclick="onBerekenCal()">Berekenen</button>
+            <p id="output-teller-cal"></p>
         </div>
         <div id="nonLoadUp" class="BMIBerekenen">
             <h1>BMI berekenen</h1>
@@ -126,10 +132,9 @@
         </div>
         <div id="nonLoadUp" class="OverOns">
             <h1>Over ons</h1>
-            <p>Rasica Fit is een fittness app gemaakt door de minkema studenten Raas, Carsten en Simon. Vandaar ook de
-                naam Rasica, met de begin letters van al onze namen. <br>
-                We hebben deze app gemaakt met behulp van javascript, css en html, dit moest namelijk voor de
-                informatica opdracht.</p>
+            <p>Wij zijn Raas, Simon en Carsten samen zijn wij de oprichters van rasica fit. <br> Dit is een fitnessapp
+                ontworpen in september 2023 om Mevrouw roestenberg te assisteren bij het behalen van een gezonde
+                levensstijl.
         </div>
     </div>
 </body>

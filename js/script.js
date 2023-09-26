@@ -13,6 +13,11 @@ function onload() {
     CALTELLER.set("coca", 0.6);
 }
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    makeGraphs();
+});
+
 function pageManager(pageId) {
 
     //Pagina's
@@ -29,6 +34,7 @@ function pageManager(pageId) {
             pageOff(thridPage);
             pageOff(fourthPage);
             pageOff(fifthPage);
+            makeGraphs();
             break;
         case 1:
             pageOff(firstPage);
@@ -192,7 +198,8 @@ function onBerekenCal() {
             } else if (radioInputs[1].checked) {
                 totalCal += CALTELLER.get(radioInputs[1].id);
             } else {
-                console.error("Altijd 1 checken");
+                document.getElementById("output-teller-cal").innerHTML = "Zorg ervoor dat u altijd 1 optie binnen de soort maaltijd aanklikt."
+                return;
             }
         }
     }
@@ -214,6 +221,8 @@ function onBerekenCal() {
     }
 
     saveTellerWeek(weekNumber, date.getDay());
+
+    document.getElementById("output-teller-cal").innerHTML = `Deze maaltijd staat gelijk aan ${totalCal} calorieën.`
 }
 
 function saveTellerWeek(currentWeek, currentWeekDay) {
@@ -232,7 +241,8 @@ function saveTellerWeek(currentWeek, currentWeekDay) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+
+function makeGraphs() {
     const graphs = document.getElementsByClassName("grafiek");
     var ctxs = [graphs[0].getContext("2d"), graphs[1].getContext("2d")];
 
@@ -309,4 +319,4 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < graphs.length; i++) {
         drawGraph(i);
     }
-});
+}
