@@ -10,8 +10,10 @@
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .main-content {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 html {
@@ -132,15 +134,21 @@ label {
     margin-top: 10px;
 }
 
-#myCanvas {
-    width: 100%;
+#verbrand-grafiek,
+#teller-grafiek {
+    width: 90%;
     aspect-ratio: 300/150;
 }
 
-.graph-container {
+.cal-grafiek {
+    margin-top: 20px;
     width: 300px;
     height: 150px;
     box-shadow: 7px 7px 33px 4px var(--second-color);
     border-radius: 15px 15px 15px 15px;
     border: 4px solid var(--second-color);
+}
+
+.nav-img {
+    width: 85%;
 }

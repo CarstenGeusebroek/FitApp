@@ -128,20 +128,20 @@ function berekenCal(perUur, aantalUur) {
     const date = new Date();
     startDate = new Date(date.getFullYear(), 0, 1);
     var days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
-    
+
     var weekNumber = Math.ceil(days / 7);
 
     var today = formatDate(date);
-    if (localStorage.getItem("lastSavedDay") !== today) {
+    if (localStorage.getItem("lastSavedverbrandDay") !== today) {
         //Vandaag nog niet gesaved
-        localStorage.setItem("lastSavedDay", today);
-        localStorage.setItem("calToday", calVerbrand);
+        localStorage.setItem("lastSavedverbrandDay", today);
+        localStorage.setItem("calverbrandToday", calVerbrand);
     } else {
         //Vandaag al wel gesaved
-        localStorage.setItem("calToday", Number(localStorage.getItem("calToday")) + calVerbrand);
+        localStorage.setItem("calverbrandToday", Number(localStorage.getItem("calverbrandToday")) + calVerbrand);
     }
 
-    var calVerbrandVandaag = localStorage.getItem("calToday");
+    var calVerbrandVandaag = localStorage.getItem("calverbrandToday");
     var highscore = Number(localStorage.getItem("dagHighScore"));
 
     if (highscore < calVerbrandVandaag) {
@@ -150,22 +150,22 @@ function berekenCal(perUur, aantalUur) {
     } else {
         output.innerHTML = `Je hebt nu ${calVerbrand} calorieën verbrand. Je zit vandaag al op ${calVerbrandVandaag} calorieën, goed bezig! Nog ${highscore - calVerbrand} en dan heb je een nieuw highscore!`;
     }
-    saveWeek(weekNumber, date.getDay());
+    saveVerbrandWeek(weekNumber, date.getDay());
 }
 
-function saveWeek(currentWeek, currentWeekDay) {
+function saveVerbrandWeek(currentWeek, currentWeekDay) {
     var week;
-    if(localStorage.getItem("currentWeek") == currentWeek) {
+    if (localStorage.getItem("currentverbrandWeek") == currentWeek) {
         console.log("Deze week is gesaved");
-        week = JSON.parse(localStorage.getItem("weekCal"));
-        week[currentWeekDay - 1] = localStorage.getItem("calToday");
-        localStorage.setItem("weekCal", JSON.stringify(week));
+        week = JSON.parse(localStorage.getItem("weekverbrandCal"));
+        week[currentWeekDay - 1] = localStorage.getItem("calverbrandToday");
+        localStorage.setItem("weekverbrandCal", JSON.stringify(week));
     } else {
         console.log("Deze week is niet gesaved")
         week = [0, 0, 0, 0, 0, 0, 0];
-        week[currentWeekDay - 1] = localStorage.getItem("calToday");
-        localStorage.setItem("weekCal", JSON.stringify(week));
-        localStorage.setItem("currentWeek", currentWeek);
+        week[currentWeekDay - 1] = localStorage.getItem("calverbrandToday");
+        localStorage.setItem("weekverbrandCal", JSON.stringify(week));
+        localStorage.setItem("currentverbrandWeek", currentWeek);
     }
 }
 
@@ -196,80 +196,117 @@ function onBerekenCal() {
             }
         }
     }
+
+    const date = new Date();
+    startDate = new Date(date.getFullYear(), 0, 1);
+    var days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
+
+    var weekNumber = Math.ceil(days / 7);
+
+    var today = formatDate(date);
+    if (localStorage.getItem("lastSavedtellerDay") !== today) {
+        //Vandaag nog niet gesaved
+        localStorage.setItem("lastSavedtellerDay", today);
+        localStorage.setItem("caltellerToday", totalCal);
+    } else {
+        //Vandaag al wel gesaved
+        localStorage.setItem("caltellerToday", Number(localStorage.getItem("caltellerToday")) + totalCal);
+    }
+
+    saveTellerWeek(weekNumber, date.getDay());
+}
+
+function saveTellerWeek(currentWeek, currentWeekDay) {
+    var week;
+    if (localStorage.getItem("currenttellerWeek") == currentWeek) {
+        console.log("Deze week is gesaved");
+        week = JSON.parse(localStorage.getItem("weektellerCal"));
+        week[currentWeekDay - 1] = localStorage.getItem("caltellerToday");
+        localStorage.setItem("weektellerCal", JSON.stringify(week));
+    } else {
+        console.log("Deze week is niet gesaved")
+        week = [0, 0, 0, 0, 0, 0, 0];
+        week[currentWeekDay - 1] = localStorage.getItem("caltellerToday");
+        localStorage.setItem("weektellerCal", JSON.stringify(week));
+        localStorage.setItem("currenttellerWeek", currentWeek);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const canvas = document.getElementById("myCanvas");
-    const ctx = canvas.getContext("2d");
+    const graphs = document.getElementsByClassName("grafiek");
+    var ctxs = [graphs[0].getContext("2d"), graphs[1].getContext("2d")];
 
-    var weekCal = JSON.parse(localStorage.getItem("weekCal"));
+    //Verbrander
 
-    if(weekCal === null) {
-        weekCal = [0, 0, 0, 0, 0, 0, 0];
+    var weekverbrandCal = JSON.parse(localStorage.getItem("weekverbrandCal"));
+
+    if (weekverbrandCal === null) {
+        weekverbrandCal = [0, 0, 0, 0, 0, 0, 0];
     }
-    
-    for(let i = 0; i < weekCal.length; i++) {
-        console.log(Number(weekCal[i]));
-        weekCal[i] = Number(weekCal[i] / 10);
+
+    for (let i = 0; i < weekverbrandCal.length; i++) {
+        weekverbrandCal[i] = Number(weekverbrandCal[i] / 7.5);
+    }
+
+
+    //Teller
+    var weektellerCal = JSON.parse(localStorage.getItem("weektellerCal"));
+
+    if (weektellerCal === null) {
+        weektellerCal = [0, 0, 0, 0, 0, 0, 0];
+    }
+
+    for (let i = 0; i < weektellerCal.length; i++) {
+        weektellerCal[i] = Number(weektellerCal[i] / 7.5);
     }
 
     // Data for the graph (x and y values)
-    const data = [
-        { x: 0, y: weekCal[0] },
-        { x: 50, y: weekCal[1] },
-        { x: 100, y: weekCal[2] },
-        { x: 150, y: weekCal[3] },
-        { x: 200, y: weekCal[4] },
-        { x: 250, y: weekCal[5] },
-        { x: 300, y: weekCal[6] },
+    const dataverbrand = [
+        { x: 20, y: weekverbrandCal[0] },
+        { x: 70, y: weekverbrandCal[1] },
+        { x: 120, y: weekverbrandCal[2] },
+        { x: 170, y: weekverbrandCal[3] },
+        { x: 220, y: weekverbrandCal[4] },
+        { x: 270, y: weekverbrandCal[5] },
+        { x: 320, y: weekverbrandCal[6] },
     ];
 
-    console.log(data.length);
+    const datateller = [
+        { x: 20, y: weektellerCal[0] },
+        { x: 70, y: weektellerCal[1] },
+        { x: 120, y: weektellerCal[2] },
+        { x: 170, y: weektellerCal[3] },
+        { x: 220, y: weektellerCal[4] },
+        { x: 270, y: weektellerCal[5] },
+        { x: 320, y: weektellerCal[6] },
+    ];
+
+    const data = [dataverbrand, datateller];
+
 
     // Function to draw the graph
-    function drawGraph() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function drawGraph(graphNumber) {
+        ctxs[graphNumber].clearRect(0, 0, graphs[graphNumber].width, graphs[graphNumber].height);
 
         // Define graph properties (line color, width, etc.)
-        ctx.strokeStyle = "#0077FF";
-        ctx.lineWidth = 1;
-        ctx.font = "10px Arial";
-        ctx.fillStyle = "white";
-        ctx.textAlign = "center";
+        ctxs[graphNumber].strokeStyle = "#0077FF";
+        ctxs[graphNumber].lineWidth = 2;
 
+        // Move to the first data point
+        ctxs[graphNumber].beginPath();
+        ctxs[graphNumber].moveTo(data[graphNumber][0].x, graphs[graphNumber].height - data[graphNumber][0].y);
 
-        // Calculate the maximum values for the X and Y axes
-        const maxX = Math.max(...data.map(point => point.x));
-        const maxY = Math.max(...data.map(point => point.y));
-
-        // Draw X-axis labels and ticks
-        for (let i = 0; i <= maxX; i += 50) {
-            const xPosition = 40 + (i / maxX) * (canvas.width - 40);
-            ctx.fillText(i, xPosition - 10, canvas.height - 20);
+        // Loop through the data and draw the graph
+        for (let i = 1; i < data[graphNumber].length; i++) {
+            ctxs[graphNumber].lineTo(data[graphNumber][i].x, graphs[graphNumber].height - data[graphNumber][i].y);
         }
 
-        // Draw Y-axis labels and ticks
-        for (let i = 0; i <= maxY; i += 50) {
-            const yPosition = canvas.height - 40 - (i / maxY) * (canvas.height - 40);
-            ctx.fillText(i, 10, yPosition + 5);
-        }
-
-        // Draw the graph line
-        ctx.strokeStyle = "#0077FF";
-        ctx.lineWidth = 2;
-
-        ctx.beginPath();
-        ctx.moveTo(40, canvas.height - data[0].y / maxY * (canvas.height - 40));
-
-        for (let i = 1; i < data.length; i++) {
-            const xPosition = 40 + (data[i].x / maxX) * (canvas.width - 40);
-            const yPosition = canvas.height - 40 - (data[i].y / maxY) * (canvas.height - 40);
-            ctx.lineTo(xPosition, yPosition);
-        }
-
-        ctx.stroke();
+        // Stroke the path to draw the line
+        ctxs[graphNumber].stroke();
     }
 
     // Call the drawGraph function to draw the initial graph
-    drawGraph();
+    for (let i = 0; i < graphs.length; i++) {
+        drawGraph(i);
+    }
 });
