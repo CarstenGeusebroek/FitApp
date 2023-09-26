@@ -232,19 +232,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Define graph properties (line color, width, etc.)
         ctx.strokeStyle = "#0077FF";
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 2;
 
-        // Move to the first data point
+        // Calculate the maximum values for the X and Y axes
+        const maxX = Math.max(...data.map(point => point.x));
+        const maxY = Math.max(...data.map(point => point.y));
+
+        // Draw X and Y axes
         ctx.beginPath();
-        ctx.moveTo(data[0].x, canvas.height - data[0].y);
+        ctx.moveTo(40, 0);  // X-axis start
+        ctx.lineTo(40, canvas.height - 40);  // X-axis end
+        ctx.lineTo(canvas.width, canvas.height - 40);  // Y-axis end
+        ctx.stroke();
 
-        // Loop through the data and draw the graph
-        for (let i = 1; i < data.length; i++) {
-            console.log(data[i].x);
-            ctx.lineTo(data[i].x, canvas.height - data[i].y);
+        // Draw X-axis labels and ticks
+        for (let i = 0; i <= maxX; i += 50) {
+            const xPosition = 40 + (i / maxX) * (canvas.width - 40);
+            ctx.fillText(i, xPosition - 10, canvas.height - 20);
+            ctx.beginPath();
+            ctx.moveTo(xPosition, canvas.height - 40);
+            ctx.lineTo(xPosition, canvas.height - 35);
+            ctx.stroke();
         }
 
-        // Stroke the path to draw the line
+        // Draw Y-axis labels and ticks
+        for (let i = 0; i <= maxY; i += 50) {
+            const yPosition = canvas.height - 40 - (i / maxY) * (canvas.height - 40);
+            ctx.fillText(i, 10, yPosition + 5);
+            ctx.beginPath();
+            ctx.moveTo(35, yPosition);
+            ctx.lineTo(40, yPosition);
+            ctx.stroke();
+        }
+
+        // Draw the graph line
+        ctx.strokeStyle = "#0077FF";
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(40, canvas.height - data[0].y / maxY * (canvas.height - 40));
+
+        for (let i = 1; i < data.length; i++) {
+            const xPosition = 40 + (data[i].x / maxX) * (canvas.width - 40);
+            const yPosition = canvas.height - 40 - (data[i].y / maxY) * (canvas.height - 40);
+            ctx.lineTo(xPosition, yPosition);
+        }
+
         ctx.stroke();
     }
 
