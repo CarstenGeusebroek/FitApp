@@ -84,7 +84,7 @@ function pageOff(x) {
 
 //Zet pagina aan
 function pageOn(x) {
-    x.style.display = "block";
+    x.style.display = "flex";
 }
 
 //Eind navigatie sectie
@@ -174,7 +174,7 @@ function berekenCal(perUur, aantalUur) {
 
     //Output van je verbrande calorieën
     if (highscore < calVerbrandVandaag) {
-        output.innerHTML = `Nieuwe highscore van de dag!!! Je hebt nu ${calVerbrand} calorieën verbrand. Je zit vandaag al op ${calVerbrandVandaag} calorieën, goed bezig!`;
+        output.innerHTML = `Nieuwe highscore van de dag!!! <br> Je hebt nu ${calVerbrand} calorieën verbrand. Je zit vandaag al op ${calVerbrandVandaag} calorieën, goed bezig!`;
         localStorage.setItem("dagHighScore", calVerbrandVandaag);
     } else {
         output.innerHTML = `Je hebt nu ${calVerbrand} calorieën verbrand. Je zit vandaag al op ${calVerbrandVandaag} calorieën, goed bezig! Nog ${highscore - calVerbrand} en dan heb je een nieuw highscore!`;
@@ -358,7 +358,7 @@ function makeGraphs() {
 
         //Daarna lopen door alle andere punten
         for (let i = 1; i < data[graphNumber].length; i++) {
-            ctxs[graphNumber].lineTo(data[graphNumber][i].x, graphs[graphNumber].height - data[graphNumber][i].y);
+            ctxs[graphNumber].lineTo(data[graphNumber][i].x, graphs[graphNumber].height + 20 - data[graphNumber][i].y);
         }
 
         ctxs[graphNumber].stroke();

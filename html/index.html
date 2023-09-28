@@ -20,7 +20,7 @@
         <button id="nav-item" class="btn btn-nav" onclick="pageManager(4)">Over ons</button>
     </div>
     <div class="main-content">
-        <div class="Homepage">
+        <div class="Homepage pagina">
             <h1>Home</h1>
             <p>Welkom bij Rasica Fit, dé fitness app van de toekomst! <br>
                 Op onze prachtige, revolutionaire fitness app kunt u van alles berekenen, van uw BMI tot zelfs uw
@@ -41,19 +41,20 @@
                 </div>
             </div>
         </div>
-        <div id="nonLoadUp" class="CalVerbrand">
+        <div id="nonLoadUp" class="CalVerbrand pagina">
             <h1>Calorieën verbrand</h1>
+            <p>Op deze pagina kunt u uw verbrande calorieën berekenen. <br> Dit doet u door uw activiteit te kiezen en vervolgens de tijd in te vullen van hoe lang u uw activiteit hebt gedaan.</p>
             <select name="Activiteit" id="activiteitInput">
                 <option value="wandelen">Wandelen</option>
                 <option value="rennen">Rennen</option>
                 <option value="zwemmen">Zwemmen</option>
                 <option value="roeien">Roeien</option>
             </select>
-            <input type="text" id="tijdInput">
+            <input placeholder="Tijd in minuten" type="text" id="tijdInput">
             <button class="btn" onclick="onCalVerbrand()">Bereken</button>
             <p id="calOutput"></p>
         </div>
-        <div id="nonLoadUp" class="CalTeller">
+        <div id="nonLoadUp" class="CalTeller pagina">
             <h1>Calorieën teller</h1>
 
 
@@ -120,7 +121,7 @@
             <button class="btn" onclick="onBerekenCal()">Berekenen</button>
             <p id="output-teller-cal"></p>
         </div>
-        <div id="nonLoadUp" class="BMIBerekenen">
+        <div id="nonLoadUp" class="BMIBerekenen pagina">
             <h1>BMI berekenen</h1>
             <h2>Gewicht in kg:</h2>
             <input class="gewichtBMI" type="text">
@@ -129,7 +130,7 @@
             <button class="btn btn-primary" onclick="BMIBerekenen()">Bereken</button>
             <h5 id="BMIOutput"></h5>
         </div>
-        <div id="nonLoadUp" class="OverOns">
+        <div id="nonLoadUp" class="OverOns pagina">
             <h1>Over ons</h1>
             <p>Wij zijn Raas, Simon en Carsten samen zijn wij de oprichters van rasica fit. <br> Dit is een fitnessapp
                 ontworpen in september 2023 om Mevrouw roestenberg te assisteren bij het behalen van een gezonde

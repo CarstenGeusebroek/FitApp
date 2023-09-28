@@ -49,6 +49,35 @@ body {
 
 }
 
+.pagina {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.CalVerbrand input{
+    width: 392px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.CalVerbrand select {
+    width: 400px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.CalVerbrand button {
+    width: 400px;
+    margin-bottom: 20px;
+    background-color: #ebeae8;
+    border: none;
+}
+
+.CalVerbrand button:hover {
+    background-color: #d1d0cf;
+}
+
 .btn-nav {
     padding-left: 5px;
     color: black;
