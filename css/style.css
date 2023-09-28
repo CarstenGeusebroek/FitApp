@@ -46,7 +46,6 @@ body {
     line-height: 1.42857143;
     border-radius: 4px;
     color: black;
-
 }
 
 .pagina {
@@ -61,21 +60,25 @@ body {
     margin-bottom: 20px;
 }
 
-.CalVerbrand select {
+.pagina select {
     width: 400px;
     height: 40px;
     margin-bottom: 20px;
 }
 
-.CalVerbrand button {
+.pagina button {
     width: 400px;
     margin-bottom: 20px;
     background-color: #ebeae8;
     border: none;
 }
 
-.CalVerbrand button:hover {
+.pagina button:hover {
     background-color: #d1d0cf;
+}
+
+.pagina button {
+    width: 400px;
 }
 
 .btn-nav {
