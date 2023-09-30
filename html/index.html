@@ -4,60 +4,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitnessApp</title>
+    <title>Rasica Fit</title>
     <script src="../js/script.js"></script>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
-    <!-- Hier staan alle verschillende pagina's, deze kunnen aan en uit geschakeld worden door js. -->
+<body onload="onload()">
+
+    <!-- De navigatie bar die aan de zijkant staat van de pagina -->
     <div class="navBar">
-        <h1 id="nav-item">Fitness App</h1>
-        <button id="nav-item" class="btn btn-nav" onclick="pageManager(0)">Home page</button>
+        <img id="nav-item" class="nav-img" src="../img/rasica.jpg" alt="Rasica Fit">
+        <button id="nav-item" class="btn btn-nav" onclick="pageManager(0)">Homepagina</button>
         <button id="nav-item" class="btn btn-nav" onclick="pageManager(1)">Calorieën verbrand</button>
         <button id="nav-item" class="btn btn-nav" onclick="pageManager(2)">Calorieën teller</button>
         <button id="nav-item" class="btn btn-nav" onclick="pageManager(3)">BMI Berekenen</button>
         <button id="nav-item" class="btn btn-nav" onclick="pageManager(4)">Over ons</button>
     </div>
+
+    <!-- Hier staan alle verschillende pagina's, deze kunnen aan en uit geschakeld worden door js. -->
     <div class="main-content">
-        <div class="Homepage">
+
+        <!-- Home pagina -->
+        <div class="Homepage pagina">
             <h1>Home</h1>
-            <p>Welkom bij Rasica Fit, dé fitness app van de toekomst! <br>
-                Op onze prachtige, revolutionaire fitness app kunt u van alles berekenen, van uw BMI tot zelfs uw
-                verbrande calorieën!<br>
-                Grafiek 1 <br>
-                Grafiek 2 <br>
+            <p> <b>Welkom bij Rasica Fit - Jouw Weg naar een Gezonder Leven <br><br></b>
+
+                Bij Rasica Fit geloven we dat een gezond en actief leven binnen handbereik ligt voor iedereen. Onze
+                missie is om jou te helpen je fitnessdoelen te bereiken en een evenwichtige levensstijl te omarmen.<br>
+                Of je nu wilt afvallen, spiermassa wilt opbouwen, of gewoon een beter inzicht in je gezondheid wilt
+                krijgen, wij hebben de tools en expertise om je daarbij te ondersteunen!<br><br><br>
+
+                <b> Onze Functies:<br><br></b>
+
+                -&emsp;Calorieverbranding bijhouden: Met onze geavanceerde tracker kun je eenvoudig bijhouden hoeveel
+                calorieën je hebt verbrand tijdens je trainingen. Of je nu gaat hardlopen, fietsen, of een intensieve
+                Roei-sessie &ensp; &emsp; volgt, wij houden alles voor je bij.<br><br>
+
+                -&emsp;Calorie-inname beheren: Een gezond dieet is essentieel voor je fitnessdoelen. Gebruik onze
+                caloriecalculator om te ontdekken hoeveel calorieën je dagelijks nodig hebt en registreer je maaltijden
+                om je inname te &emsp; volgen. Zo blijf je op het juiste spoor.<br><br>
+
+                -&emsp;BMI Berekenen: Je Body Mass Index (BMI) is een belangrijke indicator voor je algehele gezondheid.
+                Ontdek je BMI met onze handige calculator en krijg inzicht in je gewichtsstatus.<br>
             </p>
+            <div class="grafieken-container">
+                <div class="cal-verbrand">
+                    <p class="grafiek-label" for="verbrand-cal-grafiek">Verbrande calorieën afgelopen week</p>
+                    <div id="verbrand-cal-grafiek" class="cal-grafiek">
+                        <canvas class="grafiek" id="verbrand-grafiek"></canvas>
+                    </div>
+                </div>
+                <div class="cal-teller">
+                    <p class="grafiek-label" for="teller-cal-grafiek">Gegeten calorieën afgelopen week</p>
+                    <div id="teller-cal-grafiek" class="cal-grafiek">
+                        <canvas class="grafiek" id="teller-grafiek"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="nonLoadUp" class="CalVerbrand">
-            <h1>Calorieën verbrand</h1>
+
+        <!-- Verbrande calorieën pagina -->
+        <div id="nonLoadUp" class="CalVerbrand pagina">
+            <h1>Calorieën verbrand - Tel hoeveel calorieën jij hebt verbrand </h1>
+            <p>Op deze pagina kunt u uw verbrande calorieën berekenen. <br> Dit doet u door uw activiteit te kiezen
+                en
+                vervolgens de tijd in te vullen van hoe lang u uw activiteit hebt gedaan.</p>
+            <p>Het is natuurlijk belangrijk om goed actief te zijn omdat dit ervoor kan zorgen dat u meer calorieën
+                verbrand. <br> Meer verbrande calorieën betekend dat u ook meer zult afvallen. Op deze pagina kunt u
+                uw
+                activiteit van vandaag bijhouden en <br> op de home pagina kunt u uw activiteit van de afgelopen
+                week
+                bijhouden.</p>
             <select name="Activiteit" id="activiteitInput">
                 <option value="wandelen">Wandelen</option>
                 <option value="rennen">Rennen</option>
                 <option value="zwemmen">Zwemmen</option>
-                <option value="roeien">Roein</option>
+                <option value="roeien">Roeien</option>
+                <option value="tennis">Tennissen</option>
             </select>
-            <input type="text" id="tijdInput">
+            <input placeholder="Tijd in minuten" type="text" id="tijdInput">
             <button class="btn" onclick="onCalVerbrand()">Bereken</button>
             <p id="calOutput"></p>
         </div>
-        <div id="nonLoadUp" class="CalTeller">
-            <h1>Calorieën tellen</h1>
+
+        <!-- Gegeten calorieën pagina -->
+        <div id="nonLoadUp" class="CalTeller pagina">
+            <h1>Calorieën teller - Tel hoeveel calorieën jij hebt gegeten</h1>
+
+
+            <div class="calTellerItem">
+                <input type="checkbox" id="groenteFruit" class="calTellerCheckBox">
+                <label for="groenteFruit">Groente en Fruit</label>
+                <form id="groenteFruitForm">
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputgroenteFruit" id="appel"
+                        value="appel">
+                    <label for="appel">Appel (60 kcal per stuk)</label><br>
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputgroenteFruit" id="paprika"
+                        value="paprika">
+                    <label for="paprika">Paprika (28 kcal per stuk)</label><br>
+                </form>
+            </div>
+
+            <div class="calTellerItem">
+                <input type="checkbox" id="broodPastaPeulVruchten" class="calTellerCheckBox">
+                <label for="broodPastaPeulVruchten">Brood, pasta en peulvruchten</label>
+                <form id="broodPastaPeulVruchtenForm">
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputbroodPastaPeulVruchten"
+                        id="zilvervliesrijst" value="zilvervliesrijst">
+                    <label for="zilvervliesrijst">Zilvervliesrijst (111 kcal per 100 gram)</label><br>
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputbroodPastaPeulVruchten"
+                        id="sperziebonen" value="sperziebonen">
+                    <label for="sperziebonen">Sperziebonen (24 kcal per 100 gram)</label><br>
+                </form>
+            </div>
+            <div class="calTellerItem">
+                <input type="checkbox" id="zuivelvlees" class="calTellerCheckBox">
+                <label for="zuivelvlees">Zuivel, vlees, vis, ei en vleesvervangers</label>
+                <form id="zuivelvleesForm">
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputzuivelvlees"
+                        id="kabeljauwfilet" value="kabeljauwfilet">
+                    <label for="kabeljauwfilet">Kabeljauwfilet (118 kcal per 100 gram)</label><br>
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputzuivelvlees" id="biefstuk"
+                        value="biefstuk">
+                    <label for="biefstuk">Biefstuk (115 kcal per 100 gram)</label><br>
+                </form>
+            </div>
+            <div class="calTellerItem">
+                <input type="checkbox" id="vettenOlie" class="calTellerCheckBox">
+                <label for="vettenOlie">Vetten en olie</label>
+                <form id="vettenOlieForm">
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputvettenOlie" id="olie"
+                        value="olie">
+                    <label for="olie">Olie (108 kcal per eetlepel)</label><br>
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputvettenOlie" id="halvarine"
+                        value="halvarine">
+                    <label for="halvarine">Halvarine (90 kcal per 25 gram)</label><br>
+                </form>
+            </div>
+            <div class="calTellerItem">
+                <input type="checkbox" id="vocht" class="calTellerCheckBox">
+                <label for="vocht">Vocht</label>
+                <form id="vochtForm">
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputvocht" id="thee" value="thee">
+                    <label for="thee">Thee (0 kcal per 500 ml)</label><br>
+                    <input type="radio" name="groenteEnFruit" class="radioInput radioInputvocht" id="coca" value="coca">
+                    <label for="coca">Coca cola light (0,6 kcal per blikje)</label><br>
+                </form>
+            </div>
+
+            <button class="btn" onclick="onBerekenCal()">Berekenen</button>
+            <p id="output-teller-cal"></p>
         </div>
-        <div id="nonLoadUp" class="BMIBerekenen">
-            <h1>BMI berekenen</h1>
-            <h2>Gewicht in kg:</h2>
+
+        <!-- BMI berekenen pagina -->
+        <div id="nonLoadUp" class="BMIBerekenen pagina">
+            <h1>BMI Berekenen - Wat betekent jouw BMI?</h1>
+            <p>Body Mass Index (BMI) is een nuttige indicator voor je algemene gezondheid op basis van je lengte en
+                gewicht. Het berekenen van je BMI is eenvoudig en kan je helpen inzicht te krijgen in je
+                gezondheidstoestand. Hier zijn de betekenissen van BMI-waarden:</p>
+            <ul>
+                <li>BMI minder dan 20: Ondergewicht. Het kan duiden op ondervoeding of een gebrek aan
+                    voedingsstoffen.</li>
+                <li>BMI tussen 20 en 24,9: Normaal gewicht. Dit is een gezond bereik voor de meeste mensen.
+                </li>
+                <li>BMI tussen 25 en 29,9: Overgewicht. Dit geeft aan dat je gewicht boven het ideale bereik
+                    ligt, wat risico's voor je gezondheid met zich mee kan brengen.</li>
+                <li>BMI boven de 30: Obesitas (klasse 1). Dit is een aanzienlijke toename van het
+                    lichaamsvet en kan leiden tot gezondheidsproblemen.</li>
+            </ul>
+            <p>Het is belangrijk om te onthouden dat BMI een ruwe indicator is en geen rekening houdt met andere
+                factoren zoals spiermassa, lichaamssamenstelling en leeftijd. Raadpleeg altijd een professional voor
+                een volledige beoordeling van je gezondheid.</p>
+            <p>Bij Rasica Fit zijn we er om je te ondersteunen bij het begrijpen en verbeteren van je gezondheid.
+                Gebruik onze handige BMI-calculator om je BMI te berekenen en neem vervolgens stappen naar een
+                gezondere levensstijl. Samen streven we naar een evenwichtige en energieke toekomst.</p>
+            <p>Als je vragen hebt over je BMI of hoe je je gezondheid kunt verbeteren, aarzel dan niet om contact
+                met ons op te nemen. We staan altijd klaar om je te helpen.</p><br>
+            <h2>Gewicht in Kg:</h2>
             <input class="gewichtBMI" type="text">
             <h2>Lengte in cm:</h2>
             <input class="lengteBMI" type="text">
             <button class="btn btn-primary" onclick="BMIBerekenen()">Bereken</button>
             <h5 id="BMIOutput"></h5>
         </div>
-        <div id="nonLoadUp" class="OverOns">
-            <h1>Over ons</h1>
+
+        <!-- Over ons pagina -->
+        <div id="nonLoadUp" class="OverOns pagina">
+            <h1>Over Ons - Ontmoet het Team achter Rasica Fit</h1>
+            <h2>Raas</h2>
+            <p>Als mede-oprichter en personal trainer bij Rasica Fit, ben ik toegewijd aan het delen van mijn passie
+                voor fitness en gezondheid met anderen. Mijn reis begon met een diepe interesse in sport en
+                lichaamsbeweging,<br> die zich ontwikkelde tot een levenslange toewijding aan het helpen van anderen
+                om hun fysieke en mentale welzijn te verbeteren. Met een achtergrond in kinesiologie en
+                voedingswetenschappen ben ik vastberaden om jou te helpen je fitnessdoelen te bereiken en de beste
+                versie van jezelf te worden.</p>
+            <h2>Simon</h2>
+            <p>Als co-founder van Rasica Fit en technologie-enthousiasteling, ben ik verantwoordelijk voor het
+                creëren van de innovatieve tools en platforms die onze leden gebruiken om hun fitnessreis te volgen.
+                <br> Mijn passie voor gegevens en technologie heeft geleid tot de ontwikkeling van onze
+                calorie-tracker, BMI-calculator en andere handige functies die jou helpen je voortgang te meten en
+                te begrijpen. <br>Ik geloof sterk in de kracht van gegevens om positieve veranderingen te
+                bewerkstelligen, en ik ben er trots op om de technologische ruggengraat van Rasica Fit te zijn.
+            </p>
+            <h2>Carsten</h2>
+            <p>Als co-founder van Rasica Fit en een toegewijde gezondheids- en fitnessliefhebber, ben ik
+                gepassioneerd over het bieden van de best mogelijke ervaring aan onze leden. Ik breng mijn expertise
+                in fitness en gezondheid samen met mijn technologische vaardigheden om ons platform te verbeteren en
+                jou te helpen je doelen te bereiken. Ik geloof in de kracht van community en ondersteuning, en ik
+                ben vastbesloten om Rasica Fit te laten uitgroeien tot een bron van inspiratie en motivatie voor
+                iedereen.</p>
+            <p>Samen vormen we een team dat zich inzet voor jouw succes. Ons doel is om Rasica Fit niet alleen een
+                fitnessplatform te maken, maar een gemeenschap waarin we samenwerken aan een gezondere, gelukkigere
+                toekomst. We streven ernaar om jou te ondersteunen op elke stap van je reis, ongeacht je startpunt
+                of je uiteindelijke doelen.</p>
+            <p>Bedankt dat je deel uitmaakt van de Rasica Fit-gemeenschap. We kijken ernaar uit om jou te helpen je
+                fitnessdoelen te bereiken en je te inspireren om een leven vol energie en vitaliteit te leiden.</p>
+            <p>Tot ziens in de sportschool!</p>
+            <p>Met vriendelijke groeten,<br>Raas, Simon & Carsten<br>Co-founders van Rasica Fit</p>
         </div>
     </div>
 </body>
 
 </html>
-<!-- git merge --no-ff -->

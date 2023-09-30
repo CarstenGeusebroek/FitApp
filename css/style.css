@@ -3,6 +3,10 @@
     --second-color: #212C4D;
 }
 
+#nonLoadUp {
+    display: none;
+}
+
 html {
     font-family: sans-serif;
     background-color: var(--bg-color);
@@ -14,8 +18,67 @@ body {
     height: 100%;
 }
 
-#nonLoadUp {
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+label,
+li {
+    color: rgb(214, 214, 214);
+}
+
+p {
+    line-height: 25px;
+}
+
+.pagina {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.pagina select {
+    width: 400px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.pagina button {
+    width: 400px;
+    margin-bottom: 20px;
+    background-color: #ebeae8;
+    border: none;
+}
+
+
+.pagina button:hover {
+    background-color: #d1d0cf;
+}
+
+.main-content {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    position: fixed;
+    margin-left: 220px;
+    margin-top: 20px;
+    width: 80%;
+    height: 90%;
+    padding-left: 20px;
+    background-color: var(--bg-color);
+    box-shadow: 7px 7px 33px 4px var(--second-color);
+    border-radius: 15px 15px 15px 15px;
+    border: 4px solid var(--second-color);
+    overflow-y: scroll;
+}
+
+.main-content::-webkit-scrollbar {
     display: none;
+}
+
+.main-content button {
+    margin-bottom: 20px;
 }
 
 .btn {
@@ -33,7 +96,6 @@ body {
     line-height: 1.42857143;
     border-radius: 4px;
     color: black;
-
 }
 
 .btn-nav {
@@ -43,17 +105,13 @@ body {
     border-color: rgba(0, 0, 0, 0)
 }
 
-.navBar button:hover {
-    background-color: var(--second-color);
-    border-left-color: #6C72FF
-}
-
 .navBar {
     height: 90%;
-    width: 160px;
+    margin-top: 20px;
+    width: 173px;
     position: fixed;
     z-index: 1;
-    top: 1;
+    top: 0;
     left: 0;
     background-color: var(--bg-color);
     overflow-x: hidden;
@@ -63,6 +121,15 @@ body {
     box-shadow: 7px 7px 33px 4px var(--second-color);
 }
 
+.nav-img {
+    width: 85%;
+}
+
+.navBar button:hover {
+    background-color: var(--second-color);
+    border-left-color: #6C72FF
+}
+
 #nav-item {
     color: white;
     display: block;
@@ -70,33 +137,58 @@ body {
     margin-top: 20px;
 }
 
-
-
-.main-content {
-    margin-left: 220px;
-    margin-top: 20px;
-    width: 80%;
-    height: 90%;
-    padding-left: 20px;
+.Homepage {
     background-color: var(--bg-color);
+}
+
+#verbrand-grafiek,
+#teller-grafiek {
+    width: 90%;
+    aspect-ratio: 300/150;
+}
+
+.cal-grafiek {
+    margin-top: 10px;
+    width: 300px;
+    height: 150px;
     box-shadow: 7px 7px 33px 4px var(--second-color);
     border-radius: 15px 15px 15px 15px;
     border: 4px solid var(--second-color);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-p {
-    color: rgb(214, 214, 214);
+.grafiek-label {
+    margin-top: 20px;
+}
+
+.grafieken-container {
+    display: flex;
+}
+
+.CalVerbrand input {
+    width: 392px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.cal-verbrand,
+.cal-teller {
+    margin-right: 20px;
+}
+
+.calTellerItem {
+    margin-bottom: 40px;
+}
+
+.calTellerItem input {
+    margin-top: 10px;
+}
+
+.radioInput {
+    margin-left: 20px;
 }
 
 .BMIBerekenen input {
     height: 35px;
-}
-
-.Homepage {
-    background-color: var(--bg-color);
+    width: 392px;
+    margin-bottom: 20px;
 }
