@@ -12,19 +12,37 @@
 <body onload="onload()">
     <!-- Hier staan alle verschillende pagina's, deze kunnen aan en uit geschakeld worden door js. -->
     <div class="navBar">
-        <img id="nav-item" class="nav-img" src="../img/rasica.jpg" alt="Rasica Fit">
         <button id="nav-item" class="btn btn-nav" onclick="pageManager(0)">Homepagina</button>
         <button id="nav-item" class="btn btn-nav" onclick="pageManager(1)">Calorieën verbrand</button>
         <button id="nav-item" class="btn btn-nav" onclick="pageManager(2)">Calorieën teller</button>
         <button id="nav-item" class="btn btn-nav" onclick="pageManager(3)">BMI Berekenen</button>
         <button id="nav-item" class="btn btn-nav" onclick="pageManager(4)">Over ons</button>
+        <img id="nav-item" class="nav-img" src="../img/rasica.jpg" alt="Rasica Fit">
     </div>
     <div class="main-content">
         <div class="Homepage pagina">
             <h1>Home</h1>
-            <p>Welkom bij Rasica Fit, dé fitness app van de toekomst! <br>
-                Op onze prachtige, revolutionaire fitness app kunt u van alles berekenen, van uw BMI tot zelfs uw
-                verbrande calorieën!<br>
+            <p> <b>Welkom bij Rasica Fit - Jouw Weg naar een Gezonder Leven <br><br></b>
+
+                Bij Rasica Fit geloven we dat een gezond en actief leven binnen handbereik ligt voor iedereen. Onze
+                missie is om jou te helpen je fitnessdoelen te bereiken en een evenwichtige levensstijl te omarmen.<br>
+                Of je nu wilt afvallen, spiermassa wilt opbouwen, of gewoon een beter inzicht in je gezondheid wilt
+                krijgen, wij hebben de tools en expertise om je daarbij te ondersteunen!<br><br><br>
+
+                <b> Onze Functies:<br><br></b>
+
+                -&emsp;Calorieverbranding bijhouden: Met onze geavanceerde tracker kun je eenvoudig bijhouden hoeveel
+                calorieën je hebt verbrand tijdens je trainingen. Of je nu gaat hardlopen, fietsen, of een intensieve
+                Roei-sessie &ensp; &emsp; volgt, wij houden alles voor je bij.<br><br>
+
+                -&emsp;Calorie-inname beheren: Een gezond dieet is essentieel voor je fitnessdoelen. Gebruik onze
+                caloriecalculator om te ontdekken hoeveel calorieën je dagelijks nodig hebt en registreer je maaltijden
+                om je inname te &emsp; volgen. Zo blijf je op het juiste spoor.<br><br>
+
+                -&emsp;BMI Berekenen: Je Body Mass Index (BMI) is een belangrijke indicator voor je algehele gezondheid.
+                Ontdek je BMI met onze handige calculator en krijg inzicht in je gewichtsstatus.<br><br><br>
+                Download vandaag de app Rasica Fit en zet de eerste stap naar een gezonder, fitter leven. Samen gaan we
+                jouw doelen bereiken!
             </p>
             <div class="grafieken-container">
                 <div class="cal-verbrand">
@@ -124,8 +142,41 @@
             <p id="output-teller-cal"></p>
         </div>
         <div id="nonLoadUp" class="BMIBerekenen pagina">
-            <h1>BMI berekenen</h1>
-            <h2>Gewicht in kg:</h2>
+            <header>
+                <h1>BMI Berekenen - Wat betekent jouw BMI?</h1>
+            </header>
+            <section>
+                <p>Body Mass Index (BMI) is een nuttige indicator voor je algemene gezondheid op basis van je lengte en
+                    gewicht. Het berekenen van je BMI is eenvoudig en kan je helpen inzicht te krijgen in je
+                    gezondheidstoestand. Hier zijn de betekenissen van BMI-waarden:</p>
+
+                <ul>
+                    <li>**BMI minder dan 18,5:** Ondergewicht. Het kan duiden op ondervoeding of een gebrek aan
+                        voedingsstoffen.</li>
+                    <li>**BMI tussen 18,5 en 24,9:** Normaal gewicht. Dit is een gezond bereik voor de meeste mensen.
+                    </li>
+                    <li>**BMI tussen 25 en 29,9:** Overgewicht. Dit geeft aan dat je gewicht boven het ideale bereik
+                        ligt, wat risico's voor je gezondheid met zich mee kan brengen.</li>
+                    <li>**BMI tussen 30 en 34,9:** Obesitas (klasse 1). Dit is een aanzienlijke toename van het
+                        lichaamsvet en kan leiden tot gezondheidsproblemen.</li>
+                    <li>**BMI tussen 35 en 39,9:** Obesitas (klasse 2). Het risico op gezondheidsproblemen neemt toe bij
+                        deze BMI-waarde.</li>
+                    <li>**BMI 40 of hoger:** Ernstige obesitas (klasse 3). Dit wordt beschouwd als een zeer hoog risico
+                        voor gezondheidsproblemen.</li>
+                </ul>
+
+                <p>Het is belangrijk om te onthouden dat BMI een ruwe indicator is en geen rekening houdt met andere
+                    factoren zoals spiermassa, lichaamssamenstelling en leeftijd. Raadpleeg altijd een professional voor
+                    een volledige beoordeling van je gezondheid.</p>
+            </section>
+            <footer>
+                <p>Bij Rasica Fit zijn we er om je te ondersteunen bij het begrijpen en verbeteren van je gezondheid.
+                    Gebruik onze handige BMI-calculator om je BMI te berekenen en neem vervolgens stappen naar een
+                    gezondere levensstijl. Samen streven we naar een evenwichtige en energieke toekomst.</p>
+                <p>Als je vragen hebt over je BMI of hoe je je gezondheid kunt verbeteren, aarzel dan niet om contact
+                    met ons op te nemen. We staan altijd klaar om je te helpen.</p><br>
+                <h2>Gewicht in Kg:</h2>
+            </footer>
             <input class="gewichtBMI" type="text">
             <h2>Lengte in cm:</h2>
             <input class="lengteBMI" type="text">
@@ -133,10 +184,47 @@
             <h5 id="BMIOutput"></h5>
         </div>
         <div id="nonLoadUp" class="OverOns pagina">
-            <h1>Over ons</h1>
-            <p>Wij zijn Raas, Simon en Carsten samen zijn wij de oprichters van rasica fit. <br> Dit is een fitnessapp
-                ontworpen in september 2023 om Mevrouw roestenberg te assisteren bij het behalen van een gezonde
-                levensstijl.
+            <header>
+                <h1>Over Ons - Ontmoet het Team achter Rasica Fit</h1>
+            </header>
+            <section>
+                <h2>Raas</h2>
+                <p>Als mede-oprichter en personal trainer bij Rasica Fit, ben ik toegewijd aan het delen van mijn passie
+                    voor fitness en gezondheid met anderen. Mijn reis begon met een diepe interesse in sport en
+                    lichaamsbeweging,<br> die zich ontwikkelde tot een levenslange toewijding aan het helpen van anderen
+                    om hun fysieke en mentale welzijn te verbeteren. Met een achtergrond in kinesiologie en
+                    voedingswetenschappen ben ik vastberaden om jou te helpen je fitnessdoelen te bereiken en de beste
+                    versie van jezelf te worden.</p>
+            </section>
+            <section>
+                <h2>Simon</h2>
+                <p>Als co-founder van Rasica Fit en technologie-enthousiasteling, ben ik verantwoordelijk voor het
+                    creëren van de innovatieve tools en platforms die onze leden gebruiken om hun fitnessreis te volgen.
+                    <br> Mijn passie voor gegevens en technologie heeft geleid tot de ontwikkeling van onze
+                    calorie-tracker, BMI-calculator en andere handige functies die jou helpen je voortgang te meten en
+                    te begrijpen. <br>Ik geloof sterk in de kracht van gegevens om positieve veranderingen te
+                    bewerkstelligen, en ik ben er trots op om de technologische ruggengraat van Rasica Fit te zijn.</p>
+            </section>
+            <section>
+                <h2>Carsten</h2>
+                <p>Als co-founder van Rasica Fit en een toegewijde gezondheids- en fitnessliefhebber, ben ik
+                    gepassioneerd over het bieden van de best mogelijke ervaring aan onze leden. Ik breng mijn expertise
+                    in fitness en gezondheid samen met mijn technologische vaardigheden om ons platform te verbeteren en
+                    jou te helpen je doelen te bereiken. Ik geloof in de kracht van community en ondersteuning, en ik
+                    ben vastbesloten om Rasica Fit te laten uitgroeien tot een bron van inspiratie en motivatie voor
+                    iedereen.</p>
+            </section>
+            <footer>
+                <p>Samen vormen we een team dat zich inzet voor jouw succes. Ons doel is om Rasica Fit niet alleen een
+                    fitnessplatform te maken, maar een gemeenschap waarin we samenwerken aan een gezondere, gelukkigere
+                    toekomst. We streven ernaar om jou te ondersteunen op elke stap van je reis, ongeacht je startpunt
+                    of je uiteindelijke doelen.</p>
+                <p>Bedankt dat je deel uitmaakt van de Rasica Fit-gemeenschap. We kijken ernaar uit om jou te helpen je
+                    fitnessdoelen te bereiken en je te inspireren om een leven vol energie en vitaliteit te leiden.</p>
+                <p>Tot ziens in de sportschool!</p>
+                <p>Met vriendelijke groeten,<br>Raas, Simon & Carsten<br>Co-founders van Rasica Fit</p>
+            </footer>
+
         </div>
     </div>
 </body>
