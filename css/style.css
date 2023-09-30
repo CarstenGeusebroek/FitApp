@@ -91,7 +91,7 @@ body {
     width: 173px;
     position: fixed;
     z-index: 1;
-    top: 1;
+    top: 0;
     left: 0;
     background-color: var(--bg-color);
     overflow-x: hidden;
@@ -136,7 +136,8 @@ h3,
 h4,
 h5,
 p,
-label {
+label,
+li {
     color: rgb(214, 214, 214);
 }
 
@@ -183,7 +184,6 @@ label {
 
 .nav-img {
     width: 85%;
-    padding-top: 400px
 }
 
 .grafieken-container {
