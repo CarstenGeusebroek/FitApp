@@ -142,13 +142,16 @@ function onCalVerbrand() {
         case "roeien":
             berekenCal(500, tijd);
             break;
+        case "tennis":
+            berekenCal(500, tijd);
+            break;
     }
 }
 
 //Berekent de daadwerkelijke calorieën die zijn verbrand
 function berekenCal(perUur, aantalUur) {
     var output = document.getElementById("calOutput");
-    var calVerbrand = perUur * aantalUur;
+    var calVerbrand = Math.round((perUur * aantalUur) * 10) / 10;
 
     //Voor het opslaan van calorieën per dag hebben we de datum nodig
     const date = new Date();
@@ -169,7 +172,7 @@ function berekenCal(perUur, aantalUur) {
         localStorage.setItem("calverbrandToday", Number(localStorage.getItem("calverbrandToday")) + calVerbrand);
     }
 
-    var calVerbrandVandaag = localStorage.getItem("calverbrandToday");
+    var calVerbrandVandaag = Math.round(localStorage.getItem("calverbrandToday") * 10) / 10;
     var highscore = Number(localStorage.getItem("dagHighScore"));
 
     //Output van je verbrande calorieën
@@ -298,7 +301,7 @@ function makeGraphs() {
 
     //Formateer de data juist
     for (let i = 0; i < weekverbrandCal.length; i++) {
-        weekverbrandCal[i] = Number(weekverbrandCal[i] / 7.5);
+        weekverbrandCal[i] = Number(weekverbrandCal[i] / 55);
     }
 
 
@@ -313,7 +316,7 @@ function makeGraphs() {
 
     //Formateer de data juist
     for (let i = 0; i < weektellerCal.length; i++) {
-        weektellerCal[i] = Number(weektellerCal[i] / 7.5);
+        weektellerCal[i] = Number(weektellerCal[i] / 55);
     }
 
     //Alle data voor beide grafieken
@@ -358,7 +361,7 @@ function makeGraphs() {
 
         //Daarna lopen door alle andere punten
         for (let i = 1; i < data[graphNumber].length; i++) {
-            ctxs[graphNumber].lineTo(data[graphNumber][i].x, graphs[graphNumber].height + 20 - data[graphNumber][i].y);
+            ctxs[graphNumber].lineTo(data[graphNumber][i].x, graphs[graphNumber].height - data[graphNumber][i].y);
         }
 
         ctxs[graphNumber].stroke();
